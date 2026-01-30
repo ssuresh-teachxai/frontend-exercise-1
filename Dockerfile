@@ -14,8 +14,8 @@ COPY . .
 # Build the Next.js app
 RUN npm run build
 
-# Prune to production dependencies
-RUN npm prune --production
+# Prune to production dependencies (keep typescript for next.config.ts)
+RUN npm prune --production && npm install typescript --save-prod
 
 # Production stage
 FROM node:20-alpine AS runner
